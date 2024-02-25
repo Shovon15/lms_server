@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Activation email</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style type="text/css">
+			  body {
+			    margin: 0;
+			    padding: 0;
+			    min-width: 100%;
+			    font-family: Arial,sans-serif;
+			    font-size:16px;
+			    line-height: 1.5;
+			    background-color: #3498db;
+			    color: #222222;
+			  }
+              h1 {
+			      font-size: 24px;
+			      font-weight: 700;
+			      line-height: 2rem;
+			      margin-top: 0;
+			      margin-bottom: 15px;
+			      text-align: center;
+			  }
+
+			  h2 {
+			      font-size: 20px;
+			      font-weight: 700;
+			      line-height:2rem;
+			      margin-top: 0;
+			      margin-bottom: 15px;
+			      text-align: center;
+			  }
+			  p {
+                font-size: 16px;
+			      margin-top: 0;
+			      margin-bottom: 24px;
+			  }
+			.email-wrapper{
+			  max-width: 600px;
+			  margin:0 auto;
+			}
+			.email-header{
+			  background-color: #1b5ce7;
+			}
+			.email-body{
+			  background-color: rgba(102, 163, 255, 0.904);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="email-wrapper">
+			<div class="email-header">
+				<h1>Welcome to LMS Platform</h1>
+			</div>
+			<div class="email-body">
+				<h2>Hello <%= user.name %>,</h2>
+				<p>Thank you for registering with LMS platform. Your activation code is:</p>
+				<h2><%= activationCode %></h2>
+				<p>This code will velid for five minutes.</p>
+			</div>
+		</div>
+		<!-- <div class="container">
+        <h1>Account Activation</h1>
+        <p>Hello <%= user.name %>,</p>
+        <p>Thank you for registering with our platform. To activate your account, please click the button below:</p>
+        <h2><%= activationCode %></h2>
+        <p>If the button above doesn't work, you can also copy and paste the following link into your browser:</p>
+        
+        <p>Thank you!</p>
+    </div> -->
+	</body>
+</html>
