@@ -1,11 +1,12 @@
 import { Response } from 'express';
 import mongoose, { Model, Document, model } from 'mongoose';
-import CustomError from "../config/errorHandler";
+// import CustomError from "../config/errorHandler";
 // import UserModel, { IUser, userSchema } from '../models/user.models';
-import { successResponse } from '../controllers/responseController';
+// import { successResponse } from '../controllers/responseController';
 import { redis } from '../config/redis';
 import { IUser } from '../models/user.models';
 import { cloudinary } from '../secret';
+import CustomErrorHandler from '../utils/errorHandler';
 
 // export const getUserByEmail = async <T extends Document>(Model: Model<T>, email: string, options = {}): Promise<T> => {
 //     try {
@@ -47,13 +48,13 @@ export const getUserById = async <T extends Document>(Model: Model<T>, id: strin
         const user = await Model.findById(id);
 
         if (!user) {
-            throw new CustomError(404, `User does not exist with this id`);
+            throw new CustomErrorHandler(404, `User does not exist with this id`);
         }
 
         return user;
 
     } catch (error: any) {
-        throw new CustomError(400, `Invalid id`);
+        throw new CustomErrorHandler(400, `Invalid id`);
     }
 };
 
@@ -67,7 +68,7 @@ export const getUserByIdUsingRedis = async (id: string,) => {
         }
 
     } catch (error: any) {
-        throw new CustomError(400, `Invalid id`);
+        throw new CustomErrorHandler(400, `Invalid id`);
     }
 };
 
@@ -87,7 +88,7 @@ export const findUserByEmail = async (model: Model<IUser & Document>, email: str
         return user;
     } catch (error: any) {
 
-        throw new CustomError(400, `${error.message}`);
+        throw new CustomErrorHandler(400, `${error.message}`);
     }
 };
 
@@ -103,7 +104,7 @@ export async function uploadImage(avatar: string) {
         return imageUpload;
     } catch (error) {
         console.error("Error uploading image:", error);
-        throw new CustomError(400, "error upload image")
+        throw new CustomErrorHandler(400, "error upload image")
         // throw error; // Rethrow the error to handle it elsewhere if needed
     }
 }

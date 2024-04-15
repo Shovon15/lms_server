@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express"
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { clientOrigin } from "./secret";
-import { ErrorHandler } from "./middleware/error";
+import { ErrorHandler } from "./utils/error";
 import userRouter from "./routers/user.router";
 import courseRouter from "./routers/course.router";
 

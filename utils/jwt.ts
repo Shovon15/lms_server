@@ -3,7 +3,8 @@ import { IUser } from "../models/user.models";
 import { accessTokenExpireTime, nodeEnv, refreshTokenExpireTime } from "../secret";
 import { sign } from "jsonwebtoken";
 import { redis } from "../config/redis";
-import { successResponse } from "../controllers/responseController";
+import ResponseHandler from "./responseHanlder";
+// import { successResponse } from "../controllers/responseController";
 
 interface ITokenOptions {
     expires: Date;
@@ -69,15 +70,26 @@ export const sendToken = (user: IUser, statusCode: number, res: Response, messag
 
     // });
 
-    return successResponse(res, {
-        statusCode,
-        message,
-        payload: {
-            accessToken,
-            user: userWithoutSensitiveData,
-            // refreshToken,
-        }
-    });
+    // return ResponseHandler(res, {
+    //     statusCode,
+    //     message,
+    //     payload: {
+    //         accessToken,
+    //         user: userWithoutSensitiveData,
+    //         // refreshToken,
+    //     }
+    // });
+
+    return res.status(201).json(
+        new ResponseHandler(
+            201,
+            {
+                accessToken,
+                user: userWithoutSensitiveData,
+            },
+            message
+        )
+    );
     // return {
     //     user,
     //     accessToken,
